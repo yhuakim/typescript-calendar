@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import dayjs from "dayjs";
 
-function App() {
+import { DatePicker } from "./components/DatePicker";
+
+export interface IAppProps {}
+
+export const App: React.FC<IAppProps> = () => {
+  const [date, setDate] = useState(dayjs());
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-[url('./bg.svg')] bg-cover h-[30rem]">
+      <div className="max-w-[30rem] mx-auto pb-24">
+        <h4 className="text-3xl relative top-20 font-bold text-white bg-[#c743ff] p-5">
+          Calendar
+          <p className="text-sm">
+            Picked Date: {date.format("DD - MMMM - YYYY")}
+          </p>
+        </h4>
+        <DatePicker selectedDate={date} onChange={setDate} />
+      </div>
     </div>
   );
-}
-
-export default App;
+};
